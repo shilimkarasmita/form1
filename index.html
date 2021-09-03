@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+    <style>
+        body{
+            border:2px solid black;
+            font-weight: bold;
+            padding-bottom: 20px;
+            margin:auto;
+        }
+        
+        span{
+        color:red;
+    }
+    
+    </style>
+</head>
+<body>
+      <h2>Registration Form</h2>
+    <form onsubmit="return validation()">
+        Full Name :<input type="text" id="full_name">
+        <span id="message"></span><br><br>
+
+        Email ID:<input type="email" name="email" ><br><br>
+        Mobile No:<input type="tel" id="mobileno" value="">
+        <span id="digit"></span><br><br><br>
+        
+            Dear customer your OTP for registration is <span id="otp"></span>
+        <br><br>
+        <input type="submit" value="Submit"></input>
+        <button type="button" onclick="generate()">Generate OTP</button>
+        
+        
+    
+    <script>
+        
+         function validation()
+        
+         {   var alpha_char = /^[A-Za-z ]+$/;
+             var a=document.getElementById("full_name").value;
+             var b=document.getElementById("mobileno").value;
+             
+            
+             if(a=="")
+             {
+                document.getElementById("message").innerHTML= "Please fill this  fullname";
+                return false; 
+             }
+             if(a.length>=10)
+             {
+                 document.getElementById("message").innerHTML="fullname must be less than or equal to 10 characters";
+                 return false;
+             }
+             if(a.match(alpha_char))
+                true;
+                else{
+                      document.getElementById("message").innerHTML="only alpahbets are allowed";
+                      return false;
+                }
+                if(b=="")
+                {
+                    document.getElementById("digit").innerHTML="Please fill mobile number";
+                    return false;
+                }
+                if(isNaN(b)){
+                    document.getElementById("digit").innerHTML="enter only numeric value";
+                    return false;
+                    
+                }
+                if(b.length<10)
+                {
+                    document.getElementById("digit").innerHTML="Mobile number must be 10 digit";
+                    return false;
+                }
+                if(b.length>10)
+                {
+                    document.getElementById("digit").innerHTML="Mobile number must be 10 digit";
+                    return false;
+                }
+
+             if((b.charAt(0)!=9) && (b.charAt(0)!=8) && (b.charAt(0)!=7))
+             {
+                document.getElementById("digit").innerHTML="Mobile number must be started with 9,8 and 7";
+                return false;
+                
+             }
+
+            }     
+            function generate()
+            {
+                let num='1234567890';
+                let OTP='';
+                for(let i=0;i<4; i++){
+                    OTP +=num[Math.floor(Math.random()*10)];
+
+                }
+                document.getElementById('otp').innerHTML=OTP;
+            }      
+               
+           
+    </script>
+    </form>
+
+    
+</body>
+</html>
